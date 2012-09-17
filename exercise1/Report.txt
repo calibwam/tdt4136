@@ -1,0 +1,22 @@
+Task 2:
+The environment in Robocode is fully observable, as all the sensors give you exact data all the time, and you can always find out how the state is. It is a stochastic environment, as the opposing robot(s) will give quite a lot uncertainty of each action. It is also a mixture of episodic and sequential, as in each match one wrong decision could render your performance bad, but as there are more than one match to be fought, and all subsequent matches are reseting the game state at the start of each match. As the fights are being emulated on a computer, it will be really a discrete number of states, but in practice, this number gets so large that we can watch it as a continuous problem. The environment is dynamic, as the opponent can do things while our robot is deciding the next action. Finally, the environment is known, there's no sudden breakage of the laws of the game.
+
+Simple reflex agents
+These are easy to create, fast to run and have no need to do big predictions. However, they are to simple, if the data from the perception of the state is not sufficient enough to decide on a single action, it will not always do the best possible action, and can go in to endless loops.
+
+Model based reflex agents
+These keep an internal state of the world it cannot perceive at the moment, and then can make a decision out of predictions based off of the internal state. The problem arises when the actual state differs from the internal saved state, and the agent will then not make the beste possible choice.
+
+Goal based agents
+Does not only look at the state of the environment, but knows what the goal is, and then can look at what needs to be done to achieve that goal. Thus the goal based agent can be more flexible, but again will need more computational power.
+
+Utility based agents
+Has a utility function that maps a state to a number, describing how satisfactory a choice will be. The agent tries to maximize the expected value of the utility function. But if the utility function isn't correct, it will all fall to pieces.
+
+Task 3
+
+Simple reflexive robot
+ReflexBot is a simple reflexive robot that just searches for another robot in the base case. As soon as it sees one, it fires at it, and then drives around it a bit, and then goes back to searching for it. If it is hit by either a bullet or another robot, it will start to drive if it's standing still, and stop in the reverse case. See reflexbot_crazy.png and reflexbot_ramfire.png for statistics.
+
+Model based reflexive robot
+GFTargetingBot is a sample robot downloaded from the wiki (http://robowiki.net/wiki/GFTargetingBot) that uses a targeting system predicting where the opponent is if the sensor cannot see him directly. This is also is used to decide where to move to to avoid the opponent.
