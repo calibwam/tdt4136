@@ -1,6 +1,7 @@
 
-class searchNode:
-    def __init__(self, children, h, goal):
+class SearchNode:
+    def __init__(self, state, children, h, goal):
+        self.state = state
         self.children = children
         self.h = h
         self.opened = False
@@ -16,7 +17,7 @@ def aStarSearch(startNode):
 
     for node in agenda:
         if node.goal:
-            return node
+            return reconstructPath(cameFrom, node)
         closedSet.append(agenda.pop(0))
         for child in node.children:
             if child not in closedSet:
