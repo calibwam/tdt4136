@@ -12,15 +12,18 @@ class FractionSearchNode(SearchNode):
 
 
     def expandNode(self):
-        for i in range(len(self.state)):
-            if i == self.level:
-                continue
-            charAtLvl = self.state[self.level]
-            charAtI = self.state[i]
-            childState = list(self.state)
-            childState[self.level] = charAtI
-            childState[i] = charAtLvl
-            self.children.append(FractionSearchNode("".join(childState),self.level+1))
+        if self.level <= 7:
+            for i in range(len(self.state)):
+                if i == self.level:
+                    continue
+                charAtLvl = self.state[self.level]
+                charAtI = self.state[i]
+                childState = list(self.state)
+                childState[self.level] = charAtI
+                childState[i] = charAtLvl
+                self.children.append(FractionSearchNode("".join(childState),self.level+1))
+        else:
+            pass
 
 start = FractionSearchNode('314725896', 0)
 
