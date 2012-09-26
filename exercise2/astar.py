@@ -11,11 +11,11 @@ class SearchNode:
     def expandNode(self):
         pass
 
-
+states = {}
 def aStarSearch(startNode):
     closedSet = []
     agenda = [startNode]
-    agendaStates = [startNode.state]
+    states[startNode.state] = startNode
     cameFrom = {}
     startNode.g = 0
     startNode.f = startNode.h + startNode.g
@@ -28,13 +28,13 @@ def aStarSearch(startNode):
         closedSet.append(node)
         node.expandNode()
         for child in node.children:
-            if child not in closedSet and child.state not in agendaStates:
-                    cameFrom[child] = node
-                    child.opened = True
-                    child.f = node.g+getHeuristicEstimate(node) + child.h
-                    child.parent = node
-                    agenda.append(child)
-                    agendaStates.append(child.state)
+            if child not in closedSet and child.state not in states:
+                cameFrom[child] = node
+                child.opened = True
+                child.f = node.g+getHeuristicEstimate(node) + child.h
+                child.parent = node
+                agenda.append(child)
+                states[child.state] = child
         agenda.sort(key=attrgetter('f'))
 
 p = []
