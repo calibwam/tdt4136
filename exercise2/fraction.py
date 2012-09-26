@@ -20,9 +20,8 @@ class FractionSearchNode(SearchNode):
             childState = list(self.state)
             childState[self.level] = charAtI
             childState[i] = charAtLvl
-            print("".join(childState))
             self.children.append(FractionSearchNode("".join(childState),self.level+1))
 
-start = FractionSearchNode('123456789', 0)
+start = FractionSearchNode('314725896', 0)
 
 print(aStarSearch(start))

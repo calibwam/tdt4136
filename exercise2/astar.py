@@ -21,7 +21,8 @@ def aStarSearch(startNode):
 
     for node in agenda:
         if node.goal:
-            return reconstructPath(cameFrom, node)
+            return node.state
+#            return reconstructPath(cameFrom, node)
         closedSet.append(agenda.pop(0))
         node.expandNode()
         for child in node.children:
