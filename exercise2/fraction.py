@@ -1,6 +1,6 @@
 from astar import *
 
-goal = 1/3
+goal = 1/8
 
 class FractionSearchNode(SearchNode):
     def __init__(self, state, level):
@@ -20,6 +20,7 @@ class FractionSearchNode(SearchNode):
             childState = list(self.state)
             childState[self.level] = charAtI
             childState[i] = charAtLvl
+            print("".join(childState))
             self.children.append(FractionSearchNode("".join(childState),self.level+1))
 
 start = FractionSearchNode('123456789', 0)
