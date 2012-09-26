@@ -20,7 +20,7 @@ def aStarSearch(startNode):
     startNode.f = startNode.h + startNode.g
 
     while agenda:
-        node = agenda.pop(0)
+        node = agenda.pop()
         if node.goal:
             return node.state
 #            return reconstructPath(cameFrom, node)
@@ -33,7 +33,7 @@ def aStarSearch(startNode):
                 child.parent = node
                 agenda.append(child)
                 states[child.state] = child
-        agenda.sort(key=attrgetter('f'))
+        agenda.sort(key=attrgetter('f'), reverse=True)
 
 p = []
 def reconstructPath(cameFrom, currentNode):
