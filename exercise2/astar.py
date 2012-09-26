@@ -13,7 +13,6 @@ class SearchNode:
 
 states = {}
 def aStarSearch(startNode):
-    closedSet = []
     agenda = [startNode]
     states[startNode.state] = startNode
     cameFrom = {}
@@ -25,10 +24,9 @@ def aStarSearch(startNode):
         if node.goal:
             return node.state
 #            return reconstructPath(cameFrom, node)
-        closedSet.append(node)
         node.expandNode()
         for child in node.children:
-            if child not in closedSet and child.state not in states:
+            if child.state not in states:
                 cameFrom[child] = node
                 child.opened = True
                 child.f = node.g+getHeuristicEstimate(node) + child.h
