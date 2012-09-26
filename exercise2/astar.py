@@ -27,6 +27,9 @@ def aStarSearch(startNode):
         node.expandNode()
         for child in node.children:
             if child not in closedSet:
+                for n in agenda:
+                    if child.state == n.state:
+                        break
                 cameFrom[child] = node
                 child.opened = True
                 child.f = node.g+getHeuristicEstimate(node) + child.h
