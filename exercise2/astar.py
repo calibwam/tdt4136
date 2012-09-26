@@ -30,11 +30,12 @@ def aStarSearch(startNode):
                 for n in agenda:
                     if child.state == n.state:
                         break
-                cameFrom[child] = node
-                child.opened = True
-                child.f = node.g+getHeuristicEstimate(node) + child.h
-                child.parent = node
-                agenda.append(child)
+                else:
+                    cameFrom[child] = node
+                    child.opened = True
+                    child.f = node.g+getHeuristicEstimate(node) + child.h
+                    child.parent = node
+                    agenda.append(child)
         agenda.sort(key=attrgetter('f'))
 
 p = []
