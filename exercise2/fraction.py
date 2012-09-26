@@ -1,7 +1,27 @@
 from astar import *
 
+goal = 1/3
+
 class FractionSearchNode(SearchNode):
-    def __init__(self, numerator, denominator, goal):
-        state = [numerator, denominator]
-        h = int(numerator)/int(denominator) - goal
-    def __init__(self, state, children, h, goal):
+    def __init__(self, state, level):
+        h = 1
+        isGoal = int(state[:4])/int(state[4:]) == goal
+        self.g = 1
+        self.level = level
+        SearchNode.__init__(self, state, [], h, isGoal)
+
+
+    def expandNode(self):
+        for i in range(len(self.state)):
+            if i == self.level:
+                continue
+            charAtLvl = self.state[self.level]
+            charAtI = self.state[i]
+            childState = list(self.state)
+            childState[self.level] = charAtI
+            childState[i] = charAtLvl
+            self.children.append(FractionSearchNode("".join(childState),self.level+1))
+
+start = FractionSearchNode('123456789', 0)
+
+print(aStarSearch(start))

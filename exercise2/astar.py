@@ -1,3 +1,4 @@
+from operator import attrgetter
 
 class SearchNode:
     def __init__(self, state, children, h, goal):
@@ -6,6 +7,9 @@ class SearchNode:
         self.h = h
         self.opened = False
         self.goal = goal
+
+    def expandNode(self):
+        pass
 
 
 def aStarSearch(startNode):
@@ -19,22 +23,23 @@ def aStarSearch(startNode):
         if node.goal:
             return reconstructPath(cameFrom, node)
         closedSet.append(agenda.pop(0))
+        node.expandNode()
         for child in node.children:
             if child not in closedSet:
                 cameFrom[child] = node
                 child.opened = True
-                child.f = node.g+getDistance() + child.h
+                child.f = node.g+getHeuristicEstimate(node) + child.h
                 child.parent = node
                 agenda.append(child)
-        agenda.sort(key=attrget('f'))
+        agenda.sort(key=attrgetter('f'))
 
 p = []
 def reconstructPath(cameFrom, currentNode):
     if cameFrom[currentNode]:
-        p.append(reconstructPath(cameFrom, cameFrom[currentNode])
+        p.append(reconstructPath(cameFrom, cameFrom[currentNode]))
         return [currentNode].append(p)
     else:
-        return currentNode
+        return [currentNode]
 
 def getHeuristicEstimate(node):
     return 1
