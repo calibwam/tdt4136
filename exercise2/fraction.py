@@ -22,7 +22,9 @@ class FractionSearchNode(SearchNode):
                 childState[self.level] = charAtI
                 childState[i] = charAtLvl
                 print(self.level+1)
-                self.children.append(FractionSearchNode("".join(childState),self.level+1))
+                s = "".join(childState)
+                if s not in states:
+                    self.children.append(FractionSearchNode(s,self.level+1))
 
 start = FractionSearchNode('138725496', 0)
 
