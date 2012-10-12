@@ -32,12 +32,12 @@ def sa(start_node, F, F_target, T_max, dT):
     P = start_node # stores the start node in P
     T = T_max # sets the running temperature
     while True:
-        if F(P) >= F_target:
+        if F(P.state) >= F_target:
             #the current node satifies as a solution
             return P
         
         P_max = P.generate_neighbours(F)
-        q = (F(P_max)-F(P))/F(P)
+        q = (F(P_max.state)-F(P.state))/F(P.state)
         p = min(1, math.exp((-q)/T))
         x = random.random()
         if x>p:
