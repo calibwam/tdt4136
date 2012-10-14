@@ -1,5 +1,6 @@
-import math
-import random
+# here be imports
+import math # for math.exp
+import random # for random.randoj
 
 # the main abstract search node class
 class SearchNode:
@@ -30,18 +31,22 @@ class SearchNode:
 #
 def sa(start_node, F, F_target, T_max, dT):
     P = start_node # stores the start node in P
+    P.F = F(P)
     T = T_max # sets the running temperature
     while True:
-        if F(P.state) >= F_target:
+        if F(P) >= F_target:
             #the current node satifies as a solution
             return P
         
-        P_max = P.generate_neighbours(F)
-        q = (F(P_max.state)-F(P.state))/F(P.state)
-        p = min(1, math.exp((-q)/T))
-        x = random.random()
+        P_max = P.generate_neighbours(F) # generate the neighbours, and returns the best one
+        q = (P_max.F-P.F)/P.F # calculates q
+        p = min(1, math.exp((-q)/T)) # calculates p, min of 1 and e^(-q/T)
+        x = random.random() # a random number between 0 and 1
         if x>p:
+            # the random number is bigger than p, that is 
+            # e^(-q/T) is lower than 1. Exploit a good lead
             P = P_max
         else:
+            # explore random neighbours
             P = P.get_random_neighbour()
-        T = T - dT
+        T = T - dT # lower the temperature
