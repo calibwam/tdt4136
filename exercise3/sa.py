@@ -40,7 +40,10 @@ def sa(start_node, F, F_target, T_max, dT):
         
         P_max = P.generate_neighbours(F) # generate the neighbours, and returns the best one
         q = (P_max.F-P.F)/P.F # calculates q
-        p = min(1, math.exp((-q)/T)) # calculates p, min of 1 and e^(-q/T)
+        try:
+            p = min(1, math.exp((-q)/T)) # calculates p, min of 1 and e^(-q/T)
+        except OverflowError:
+            p = 1
         x = random.random() # a random number between 0 and 1
         if x>p:
             # the random number is bigger than p, that is 
