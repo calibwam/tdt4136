@@ -1,3 +1,4 @@
+/* Source: http://rosettacode.org/wiki/Evaluate_binomial_coefficients#C */
 #include <limits.h>
 #include "binomial.h"
 
