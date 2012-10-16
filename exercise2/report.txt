@@ -1,0 +1,66 @@
+The Fraction Puzzle
+
+    Representation
+        The state is represented by a string, and thus '123456789' 
+        will mean the state 1234/56789.
+
+    Initial state
+        The initial state of the puzzle is an arbritary fraction.
+
+    Goal state
+        The goal state is a fraction evalutated to be equal to the 
+        goal fraction given.
+
+    Heuristic function
+        As the puzzle is not well suitable for A* search, the heuristic
+        given is constant.
+
+    Generating successor
+        Iterating through the string representation of fraction, we swap
+        the char at the current index with the char at the point in the 
+        string where the level of the state (how far it is from the start state)
+        is the index.
+
+    Overview of solution
+        For some reason, the algorithm takes a serious long time generating different
+        solutions if a goal node is not obtained early in the search tree. I have
+        thoroughly bug checked it, but can't find anything particular wrong.
+        With goal = 1/8, and start state 138725496, i find the solution 318725496, but
+        given the goal 1/4 and the same start state, the program runs for a long time,
+        generating a lot of successor nodes and not finding any solutions.
+        The problem might be something with the function generating successors, as it
+        might be that it can't generate every permutation as it should, but as far as
+        I can see, there is nothing seemingly wrong.
+
+The Linear Checkers Problem
+
+    Representation
+        The state is represented by a string where r is a red checker, and
+        b is a black one. '.' is representing the space on the board.
+
+    Initial state
+        The initial state of the board is all the black checkers to the left
+        and all the red to the right with a space between. For the 3 checker
+        problem, the state represented as a string will be 'bbb.rrr'.
+
+    Goal state
+        The goal state is the state where all the red checkers are to the left,
+        and the black are to the right. On string representation, 'rrr.bbb'.
+
+    Heuristic function
+        Because of a bug, the heuristic function implemented is just constant, and
+        implementation is thus not optimal. An optimal solution would look at how
+        many pieces is in the correct spot, and have that the lower the heuristic are,
+        the closer the node is to the solution.
+
+    Generating successors
+        The program iterates through the string representation and looks if the
+        the spot 1 to the right, 2 to the right, 1 to the left or 2 to the left is
+        available. If so, it generates a successor with the legal move done.
+
+    Overview of solution
+        The program generates a solution for the K linear checkers problem, but
+        there is a bug in the reconstruct path function which I cannot find,
+        and I cannot therefore show a path given to find the solution. However, since
+        I know that my heuristic is not admissible, I know that the solution I find is
+        not optimal.
