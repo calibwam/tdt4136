@@ -39,8 +39,7 @@ int is_solution(int * state, int k, int * collision)
 
     };
     struct attacks found_collisions[(int) binomial((ULONG)k,(ULONG)2)];
-    struct attacks *first_found = found_collisions;
-    struct attacks *next_spot = first_found;
+    struct attacks *next_spot = &found_collisions[0];
 
     int collisions = 0;
     for(int i = 0; i<k; i++){
