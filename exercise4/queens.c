@@ -7,7 +7,7 @@
 void generate_start_state(int * state, int k)
 {
     for(int i = 0; i<k; i++){
-        state[i] = rand()%k;
+        state[i] = rand()%k - 1;
     }
 }
 
@@ -45,39 +45,40 @@ int is_solution(int * state, int k, int * collision)
     for(int i = 0; i<k; i++){
         for(int j = i+1; j<k; j++){
             if ((state[j] == state[i]) || (state[j] == state[i]+abs(i-j))
-                                       || (state[j] == state[i]-abs(i-j)))
+                                       || (state[j] == state[i]-abs(i-j))){
                 collisions++;
                 struct attacks new_attack;
                 new_attack.party1 = state[i];
                 new_attack.party2 = state[j];
-                *next_spot++ = new_attack;
+                *(next_spot++) = new_attack;
+            }
         }
     }
 
-    // TODO fix random collision
-    *collision = found_collisions[0].party2;
-    printf("%d\n", found_collisions[0].party2);
+    *collision = found_collisions[next_spot-&found_collisions[0]].party2;
 
     if(!collisions)
         return 1;
     return 0;
 }
 
-int num_of_conflicts(int state[], int k, int column, int conflicts[])
+int num_of_conflicts(int state[], int k, int column, int *conflicts)
 {
+    int * start_of_conflicts = conflicts;
     for(int i = 0; i<k; i++){
         for(int j = i+1; j<k; j++){
             if ((state[j] == state[i]) || (state[j] == state[i]+abs(i-j))
                                        || (state[j] == state[i]-abs(i-j))){
-                conflicts[i]++; 
+                *(conflicts++); 
             }
                 
         }
+        conflicts++;
     }
     int lowest = INT_MAX;
     for(int i = 0; i <k; i++){
-        if(conflicts[i] < lowest)
-            lowest = conflicts[i];
+        if(*start_of_conflicts < lowest)
+            lowest = *(conflicts++);
     }
     return lowest;
 
@@ -91,9 +92,8 @@ int main(int argc, char** argv)
     generate_start_state(state, k);
     int collision = 0;
     do{
-        int min_conflicts[k];
-        for(int i = 0; i<k; i++)
-            min_conflicts[i] = 0;
+        int *min_conflicts = malloc(k*sizeof(int));
+        int *conflicts_start = min_conflicts;
         int current_lowest = num_of_conflicts(state, k, collision, min_conflicts);
         int index;
         for(int i = 0; i<k; i++){
