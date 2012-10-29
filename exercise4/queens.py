@@ -1,5 +1,4 @@
 from random import randint
-from math import fabs
 import sys
 
 def generate_start_state(k):
@@ -13,11 +12,11 @@ def get_hits(col, row, k, state):
     for i in range(k):
         if i == row:
             continue
-        if state[i] == col:
+        if state[i] == row:
             hits += 1
-        elif state[i] == i - fabs(row + col):
+        elif state[i] == i - row + col:
             hits += 1
-        elif state[i] == i + fabs(row + col):
+        elif state[i] == -i + col + row :
             hits += 1
     return hits
 
@@ -25,7 +24,7 @@ def generate_num_conflicts(state, k, row):
     num_conflicts = [0]*k
     current_queen = state[row]
     for i in range(k):
-        num_conflicts[i] = get_hits(i, state[i], k, state)
+        num_conflicts[i] = get_hits(state[i], i,k, state)
 
     return num_conflicts
 
