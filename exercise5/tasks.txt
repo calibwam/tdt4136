@@ -1,0 +1,109 @@
+Task 1
+
+1
+Possible models:
+
+KB      a2      a3      1.3     2.2     2.3
+        T       T       OK      OK      OK 
+        T       T       W       OK      OK 
+        T       T       P       OK      OK 
+        T       T       WP      OK      OK 
+        T       T       OK      W       OK 
+                T       OK      P       OK 
+                T       OK      WP      OK 
+        T       T       P       W       OK 
+T               T       W       P       OK 
+                T       P       WP      OK 
+                T       WP      P       OK 
+        T       T       OK      W       OK
+                T       OK      P       OK
+T               T       OK      WP      OK
+        T               OK      OK      W 
+        T       T       OK      OK      P 
+        T               OK      OK      WP
+                        OK      P       W 
+T       T       T       OK      W       P 
+                        OK      P       WP
+T               T       OK      WP      P 
+        T               OK      OK      W 
+        T       T       OK      OK      P 
+        T               OK      OK      WP
+        T               P       OK      W 
+T       T       T       W       OK      P 
+        T               P       OK      WP
+        T       T       WP      OK      P 
+T               T       W       P       P
+        T       T       P       W       P
+                        P       P       W
+
+2
+a) YES
+b) NO
+c) YES
+d) YES
+e) YES
+f) YES
+g) NO
+h) YES
+i) YES
+j) NO
+k) YES
+l) NO
+
+3
+a) 12 models
+
+b) 15 models
+
+c) no models
+
+
+4
+a) Valid
+b) Satisfiable
+c) Satisfiable
+d) Valid
+e) Valid
+f) Valid
+g) Satisfiable
+
+5
+a) 3/4 Q
+b) 1/4 Q
+c) 5/8 Q
+
+Task 2
+
+1.
+a) No work is needed
+
+b) No work is needed
+
+c) NOT A OR B OR C
+
+d) (NOT A AND C) OR B
+
+2.
+The statements in KB on CNF is:
+    
+    ((NOT c OR NOT a) AND (NOT c OR B))
+    NOT d OR NOT e OR C
+    a AND d
+
+Since the last statement says that both a and d are true,
+it follows in the first part of the first statement that
+NOT c must be true, thus making c false. With this, we can
+conclude that NOT e is in KB, making KB AND e unsatisfiable,
+and we have shown that KB entails NOT e.
+
+Task 3
+
+1
+a) Occupation(Emily, Surgeon) ∨ Occupation(Emily, Lawyer)
+
+c) ∀x Surgeon(x) ⇒ Doctor(x)
+
+g) ∀x ∃y Surgeon(x) ⇒ Lawyer(y)
+
+2
+Using equality to show that a value has a property can be misinterpreted as that it has been assigned to that property. In this example, writing WA = red may lead people to infer that WA is red, and not giving the correct meaning of our statement.
