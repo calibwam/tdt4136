@@ -1,0 +1,59 @@
+; Mon Nov 19 20:43:41 CET 2012
+; 
+;+ (version "3.5")
+;+ (build "Build 649")
+
+([animals_Class11] of  Mammal
+
+	(edible TRUE)
+	(have_skin TRUE)
+	(name "cow")
+	(walks TRUE))
+
+([animals_Class12] of  Fish
+
+	(edible TRUE)
+	(has_gills TRUE)
+	(have_skin TRUE)
+	(lay_eggs TRUE)
+	(name "salmon")
+	(swims TRUE))
+
+([animals_Class13] of  Fish
+
+	(dangerous TRUE)
+	(has_gills TRUE)
+	(have_skin TRUE)
+	(lay_eggs FALSE)
+	(name "shark")
+	(swims TRUE))
+
+([animals_Class14] of  Bird
+
+	(can_fly FALSE)
+	(have_skin TRUE)
+	(have_wings TRUE)
+	(lay_eggs TRUE)
+	(name "ostrich")
+	(swims TRUE)
+	(walks TRUE))
+
+([animals_Class15] of  Bird
+
+	(can_fly TRUE)
+	(color "yellow")
+	(have_skin TRUE)
+	(have_wings TRUE)
+	(lay_eggs TRUE)
+	(name "canary"))
+
+([animals_Class16] of  %3AINSTANCE-ANNOTATION
+
+	(%3ACREATOR "gombos"))
+
+([animals_Class21] of  Mammal
+
+	(can_fly TRUE)
+	(have_skin TRUE)
+	(have_wings TRUE)
+	(name "bat"))
